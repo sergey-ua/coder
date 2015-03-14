@@ -19,8 +19,19 @@ public class BeeElementsParserTest
     BeeElementsParser p = new BeeElementsParser();
     shouldFeedCharsOk(p, integerValue);
     Assert.assertNotNull(p.getParsedObject());
-    Assert.assertEquals(12,p.getParsedObject().getValue());
+    Assert.assertEquals(12, p.getParsedObject().getValue());
   }
+
+  @Test
+  public void parseNegativeNumber()
+  {
+    char[] negativeNumber = "i-1e".toCharArray();
+    BeeElementsParser p = new BeeElementsParser();
+    shouldFeedCharsOk(p, negativeNumber);
+    Assert.assertNotNull(p.getParsedObject());
+    Assert.assertEquals(-1, p.getParsedObject().getValue());
+  }
+
 
   @Test
   public void parseString()

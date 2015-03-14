@@ -10,10 +10,16 @@ public class IntegerElementBuilder extends ValueElementBuilder<IntegerBeeElement
 {
   private String value = "";
 
+
   @Override
   public boolean isTokenApplicable(char token)
   {
-    return Character.isDigit(token);
+    return Character.isDigit(token) || canBeMinus(token);
+  }
+
+  private boolean canBeMinus(char token)
+  {
+    return '-' == token && value.isEmpty();
   }
 
   @Override

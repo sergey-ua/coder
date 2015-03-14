@@ -21,7 +21,7 @@ public class ElementBuilderFactory
       }
       case LIST:
       {
-        return null;
+        return new ListElementBuilder();
       }
       case DICTIONARY:
       {

@@ -1,5 +1,6 @@
 package org.beencoder.io.parsing;
 
+import com.sun.istack.internal.NotNull;
 import org.beencoder.excpetion.InvalidStatementException;
 import org.beencoder.excpetion.InvalidValueException;
 import org.beencoder.excpetion.ParsingException;
@@ -52,10 +53,17 @@ public class BeeElementsParser
   private ElementBuilder getOrCreateBuilder(char token) throws InvalidStatementException
   {
     ElementBuilder currentBuilder = underConstructBuilders.pop();
-    if (currentBuilder==null || currentBuilder.canContainElements()){
-       return tryConstructNewBuilder(token);
+    if (currentBuilder == null || canAddItemsToContainer(currentBuilder, token))
+    {
+      underConstructBuilders.push(currentBuilder);
+      return tryConstructNewBuilder(token);
     }
     return currentBuilder;
+  }
+
+  private boolean canAddItemsToContainer(@NotNull ElementBuilder builder, char token)
+  {
+    return builder.canContainElements() && ! builder.canBeCompletedWith(token);
   }
 
   private ElementBuilder tryConstructNewBuilder(char token) throws InvalidStatementException
@@ -98,8 +106,11 @@ public class BeeElementsParser
 
   private void raiseExceptionIfBuilderIsNotValue(ElementBuilder builder, char token) throws InvalidStatementException
   {
-    throw new InvalidStatementException(String.format("Invalid closing character for container of type %s " +
-        ". Found: %s.",builder.getSupportedTypeMeta().toString(),token));
+    if (!(builder instanceof ValueElementBuilder))
+    {
+      throw new InvalidStatementException(String.format("Invalid closing character for container of type %s " +
+          ". Found: %s.", builder.getSupportedTypeMeta().toString(), token));
+    }
   }
 
   private void handleValueToken(ValueElementBuilder valueBuilder, char token) throws InvalidValueException, InvalidStatementException

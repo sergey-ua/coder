@@ -15,10 +15,13 @@ class UnderConstructionBuildersHolder
 {
   private Deque<ElementBuilder> nestingBuilders = new LinkedList<ElementBuilder>();
 
-  void push(ElementBuilder b) throws InvalidStatementException
+  void push(@Nullable ElementBuilder b) throws InvalidStatementException
   {
-    assertParentIsContainer(nestingBuilders.peekFirst());
-    nestingBuilders.push(b);
+    if (b != null)
+    {
+      assertParentIsContainer(nestingBuilders.peekFirst());
+      nestingBuilders.push(b);
+    }
   }
 
   @Nullable

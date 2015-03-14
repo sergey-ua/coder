@@ -93,7 +93,7 @@ public class BeeElementsParser
     }
   }
 
-  private void complete(ElementBuilder builder) throws InvalidStatementException
+  private void complete(ElementBuilder builder) throws InvalidStatementException, InvalidValueException
   {
     BeeElement element = builder.build();
     ContainerElementBuilder parent = underConstructBuilders.getParentContainer();

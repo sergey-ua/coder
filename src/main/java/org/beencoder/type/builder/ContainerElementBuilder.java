@@ -1,5 +1,6 @@
 package org.beencoder.type.builder;
 
+import org.beencoder.excpetion.InvalidValueException;
 import org.beencoder.type.element.BeeElement;
 
 /**
@@ -11,7 +12,7 @@ import org.beencoder.type.element.BeeElement;
  */
 public abstract class ContainerElementBuilder<T extends BeeElement> implements ElementBuilder<T>
 {
-  public abstract void appendElement(BeeElement element);
+  public abstract void appendElement(BeeElement element) throws InvalidValueException;
 
   @Override
   public boolean canContainElements()

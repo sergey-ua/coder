@@ -76,6 +76,18 @@ public class BeeElementsParserTest
 
   }
 
+  @Test
+  public void parseListOfLists()
+  {
+    char[] listOfLists = "llelleleee".toCharArray();
+    BeeElementsParser p = new BeeElementsParser();
+    shouldFeedCharsOk(p, listOfLists);
+    Assert.assertNotNull(p.getParsedObject());
+    ListBeeElement listBeeElement = (ListBeeElement) p.getParsedObject();
+    Assert.assertNotNull(listBeeElement);
+    Assert.assertEquals(2, listBeeElement.getValue().size());
+  }
+
   private void compareIntegers(int expected, Object given)
   {
     if (!(given instanceof IntegerBeeElement))
@@ -84,6 +96,16 @@ public class BeeElementsParserTest
     }
     IntegerBeeElement intObj = (IntegerBeeElement) given;
     Assert.assertEquals(Integer.valueOf(expected), intObj.getValue());
+  }
+
+
+  @Test
+  public void parseDictionary()
+  {
+    char[] dict = "d1:ai4e1:bi5ee".toCharArray();
+    BeeElementsParser p = new BeeElementsParser();
+    shouldFeedCharsOk(p, dict);
+    Assert.assertNotNull(p.getParsedObject());
   }
   private void shouldFeedCharsOk(BeeElementsParser parser, char[] tokens)
   {

@@ -25,7 +25,7 @@ public class ElementBuilderFactory
       }
       case DICTIONARY:
       {
-        return null;
+        return new MapElementBuilder();
       }
     }
     return null;

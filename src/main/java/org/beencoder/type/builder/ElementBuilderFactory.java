@@ -2,24 +2,22 @@ package org.beencoder.type.builder;
 
 import org.beencoder.type.TypeMeta;
 
-import static org.beencoder.type.TypeMeta.*;
-
 /**
  * Created by tityenok on 3/14/15.
  */
 public class ElementBuilderFactory
 {
-  public ElementBuilder createBuilderByType(TypeMeta typeMeta)
+  public ElementBuilder createBuilder(TypeMeta typeMeta, Character token)
   {
     switch (typeMeta)
     {
       case INTEGER:
       {
-        return null;
+        return new IntegerElementBuilder();
       }
       case STRING:
       {
-        return null;
+        return new StringElementBuilder(token);
       }
       case LIST:
       {

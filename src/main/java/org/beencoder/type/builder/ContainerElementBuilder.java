@@ -9,7 +9,13 @@ import org.beencoder.type.element.BeeElement;
  *
  * @author tityenok
  */
-public interface ContainerElementBuilder<T extends BeeElement> extends ElementBuilder<T>
+public abstract class ContainerElementBuilder<T extends BeeElement> implements ElementBuilder<T>
 {
-  void appendElement(BeeElement element);
+  public abstract void appendElement(BeeElement element);
+
+  @Override
+  public boolean canContainElements()
+  {
+    return true;
+  }
 }

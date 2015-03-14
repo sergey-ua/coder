@@ -13,4 +13,6 @@ public interface ElementBuilder<T extends BeeElement>
   T build();
 
   boolean canBeCompletedWith(char token);
+
+  boolean canContainElements();
 }

@@ -11,10 +11,15 @@ import org.beencoder.type.element.BeeElement;
  *
  * @author tityenok
  */
-public interface ValueElementBuilder<T extends BeeElement> extends ElementBuilder<T>
+public abstract class ValueElementBuilder<T extends BeeElement> implements ElementBuilder<T>
 {
-  boolean isTokenApplicable(char token);
+  public abstract  boolean isTokenApplicable(char token);
 
-  void addToken(char token);
+  public abstract void addToken(char token);
 
+  @Override
+  public boolean canContainElements()
+  {
+    return false;
+  }
 }

@@ -5,9 +5,21 @@ package org.beencoder.type.element;
  */
 public class IntegerBeeElement implements BeeElement<Integer>
 {
+  private Integer value;
+
+  public IntegerBeeElement(int value)
+  {
+    this.value = value;
+  }
+
   @Override
   public Integer getValue()
   {
-    return null;
+    return value;
+  }
+
+  public static IntegerBeeElement fromInt(int value)
+  {
+    return new IntegerBeeElement(value);
   }
 }

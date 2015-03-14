@@ -40,4 +40,10 @@ public class IntegerElementBuilder extends ValueElementBuilder<IntegerBeeElement
   {
     return TypeMeta.INTEGER.getEndPattern().equals(token);
   }
+
+  @Override
+  public TypeMeta getSupportedTypeMeta()
+  {
+    return TypeMeta.INTEGER;
+  }
 }

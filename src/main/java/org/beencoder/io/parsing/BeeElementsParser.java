@@ -1,5 +1,8 @@
 package org.beencoder.io.parsing;
 
+import org.beencoder.excpetion.InvalidStatementException;
+import org.beencoder.excpetion.InvalidValueException;
+import org.beencoder.excpetion.ParsingException;
 import org.beencoder.type.TypeMeta;
 import org.beencoder.type.builder.ContainerElementBuilder;
 import org.beencoder.type.builder.ElementBuilder;
@@ -19,26 +22,34 @@ public class BeeElementsParser
 
   private boolean newBuilderWasCreated;
 
-  public void feedToken(char token)
+  public void feedToken(char token) throws ParsingException
   {
     parsedObject = null;
-    ElementBuilder b = getOrCreateBuilder(token);
-    if (this.newBuilderWasCreated)
+    try
     {
-      registerNewBuilder(b);
-      return;
+      ElementBuilder b = getOrCreateBuilder(token);
+      if (this.newBuilderWasCreated)
+      {
+        registerNewBuilder(b);
+        return;
+      }
+      completeOrAddToValue(b, token);
     }
-    completeOrAddToValue(b, token);
+    catch (InvalidStatementException | InvalidValueException e)
+    {
+      throw new ParsingException("Exception during parsing process. See stacktrace for details", e);
+    }
+
   }
 
-  private void registerNewBuilder(ElementBuilder builder)
+  private void registerNewBuilder(ElementBuilder builder) throws InvalidStatementException
   {
     this.newBuilderWasCreated = false;
     underConstructBuilders.push(builder);
   }
 
 
-  private ElementBuilder getOrCreateBuilder(char token)
+  private ElementBuilder getOrCreateBuilder(char token) throws InvalidStatementException
   {
     ElementBuilder currentBuilder = underConstructBuilders.pop();
     if (currentBuilder==null || currentBuilder.canContainElements()){
@@ -47,18 +58,18 @@ public class BeeElementsParser
     return currentBuilder;
   }
 
-  private ElementBuilder tryConstructNewBuilder(char token)
+  private ElementBuilder tryConstructNewBuilder(char token) throws InvalidStatementException
   {
     TypeMeta typeMeta = TypeMeta.defineByFirstChar(token);
     if (typeMeta == null)
     {
-      //TODO: exception. Unknown type which starts with token
+      throw new InvalidStatementException("Unknown element: " + token);
     }
     this.newBuilderWasCreated = true;
     return builderFactory.createBuilder(typeMeta,token);
   }
 
-  private void completeOrAddToValue(ElementBuilder builder, char token)
+  private void completeOrAddToValue(ElementBuilder builder, char token) throws InvalidValueException, InvalidStatementException
   {
     if (builder.canBeCompletedWith(token))
     {
@@ -68,13 +79,13 @@ public class BeeElementsParser
     {
       //only value builders come to this branch, because we either completed container tag, or created
       //new builder. if it is not, then container has invalid closing character
-      raiseExceptionIfBuilderIsNotValue(builder);
+      raiseExceptionIfBuilderIsNotValue(builder, token);
       handleValueToken((ValueElementBuilder) builder,token);
 
     }
   }
 
-  private void complete(ElementBuilder builder)
+  private void complete(ElementBuilder builder) throws InvalidStatementException
   {
     BeeElement element = builder.build();
     ContainerElementBuilder parent = underConstructBuilders.getParentContainer();
@@ -85,12 +96,13 @@ public class BeeElementsParser
     this.parsedObject = element;
   }
 
-  private void raiseExceptionIfBuilderIsNotValue(ElementBuilder builder)
+  private void raiseExceptionIfBuilderIsNotValue(ElementBuilder builder, char token) throws InvalidStatementException
   {
-
+    throw new InvalidStatementException(String.format("Invalid closing character for container of type %s " +
+        ". Found: %s.",builder.getSupportedTypeMeta().toString(),token));
   }
 
-  private void handleValueToken(ValueElementBuilder valueBuilder, char token)
+  private void handleValueToken(ValueElementBuilder valueBuilder, char token) throws InvalidValueException, InvalidStatementException
   {
     if (valueBuilder.isTokenApplicable(token))
     {
@@ -103,9 +115,10 @@ public class BeeElementsParser
     }
   }
 
-  private void raiseInvalidValueException(ValueElementBuilder valueBuilder, char token)
+  private void raiseInvalidValueException(ValueElementBuilder valueBuilder, char token) throws InvalidValueException
   {
-
+    throw new InvalidValueException(String.format("Cannot apply value %s to type of %s", token,
+        valueBuilder.getSupportedTypeMeta().toString()));
   }
 
   public boolean isObjectReady()

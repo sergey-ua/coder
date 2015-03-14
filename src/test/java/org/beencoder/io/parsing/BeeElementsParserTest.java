@@ -1,5 +1,6 @@
 package org.beencoder.io.parsing;
 
+import org.beencoder.excpetion.ParsingException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Spy;
@@ -15,7 +16,7 @@ public class BeeElementsParserTest
   {
     char[] integerValue = new char[] {'i','1','2','e'};
     BeeElementsParser p = new BeeElementsParser();
-    feedChars(p,integerValue);
+    shouldFeedCharsOk(p, integerValue);
     Assert.assertNotNull(p.getParsedObject());
     Assert.assertEquals(12,p.getParsedObject().getValue());
   }
@@ -25,12 +26,31 @@ public class BeeElementsParserTest
   {
     char[] stringValue = new char[] {'3',':','h','e','y'};
     BeeElementsParser p = new BeeElementsParser();
-    feedChars(p,stringValue);
+    shouldFeedCharsOk(p, stringValue);
     Assert.assertNotNull(p.getParsedObject());
     Assert.assertEquals("hey",p.getParsedObject().getValue());
   }
 
-  private void feedChars(BeeElementsParser parser, char[] tokens)
+  @Test(expected = ParsingException.class)
+  public void parseInvalidNumber() throws ParsingException
+  {
+    char[] invalidInteger = new char[]{'i', '1', 'g', 'e'};
+    BeeElementsParser p = new BeeElementsParser();
+    feedChars(p,invalidInteger);
+  }
+
+  private void shouldFeedCharsOk(BeeElementsParser parser, char[] tokens)
+  {
+    try
+    {
+      feedChars(parser,tokens);
+    }
+    catch (ParsingException e)
+    {
+      Assert.fail();
+    }
+  }
+  private void feedChars(BeeElementsParser parser, char[] tokens) throws ParsingException
   {
     for (char token : tokens)
     {

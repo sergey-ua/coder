@@ -1,6 +1,7 @@
 package org.beencoder.io.parsing;
 
 import com.sun.istack.internal.Nullable;
+import org.beencoder.excpetion.InvalidStatementException;
 import org.beencoder.type.builder.ContainerElementBuilder;
 import org.beencoder.type.builder.ElementBuilder;
 
@@ -14,7 +15,7 @@ class UnderConstructionBuildersHolder
 {
   private Deque<ElementBuilder> nestingBuilders = new LinkedList<ElementBuilder>();
 
-  void push(ElementBuilder b)
+  void push(ElementBuilder b) throws InvalidStatementException
   {
     assertParentIsContainer(nestingBuilders.peekFirst());
     nestingBuilders.push(b);
@@ -35,19 +36,22 @@ class UnderConstructionBuildersHolder
     return nestingBuilders.size();
   }
 
-  private void assertParentIsContainer(@Nullable ElementBuilder parent)
+  private void assertParentIsContainer(@Nullable ElementBuilder parent) throws InvalidStatementException
   {
     if (parent != null)
     {
       if (!(parent instanceof ContainerElementBuilder))
       {
-        //TODO throw value element is not closed
+        // if we have started to parse another element and previous is still not completed
+        //and its not container then consider it as user did not close value element properly
+        throw new InvalidStatementException(String.format("Element of type %s is not closed properly",
+            parent.getSupportedTypeMeta().toString()));
       }
     }
   }
 
   @Nullable
-  ContainerElementBuilder getParentContainer()
+  ContainerElementBuilder getParentContainer() throws InvalidStatementException
   {
     if (nestingBuilders.size() >= 1)
     {

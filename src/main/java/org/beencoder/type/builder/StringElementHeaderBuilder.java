@@ -25,10 +25,6 @@ class StringElementHeaderBuilder
       {
         completeHeader();
       }
-      else
-      {
-        //TODO: need to raise exception
-      }
     }
   }
 

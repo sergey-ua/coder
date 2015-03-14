@@ -1,5 +1,6 @@
 package org.beencoder.type.builder;
 
+import org.beencoder.type.TypeMeta;
 import org.beencoder.type.element.StringBeeElement;
 
 /**
@@ -60,5 +61,11 @@ public class StringElementBuilder extends ValueElementBuilder<StringBeeElement>
       return true;
     }
     return false;
+  }
+
+  @Override
+  public TypeMeta getSupportedTypeMeta()
+  {
+    return TypeMeta.STRING;
   }
 }

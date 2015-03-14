@@ -1,5 +1,6 @@
 package org.beencoder.type.builder;
 
+import org.beencoder.type.TypeMeta;
 import org.beencoder.type.element.BeeElement;
 
 /**
@@ -15,4 +16,6 @@ public interface ElementBuilder<T extends BeeElement>
   boolean canBeCompletedWith(char token);
 
   boolean canContainElements();
+
+  TypeMeta getSupportedTypeMeta();
 }

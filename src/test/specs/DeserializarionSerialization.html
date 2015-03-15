@@ -20,10 +20,80 @@
       </tr>
       <tr>
           <td>
+              Integer. Negative value.
+          </td>
+          <td>
+              <pre concordion:set="#serialized">i-10e</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
+              String. Simple value.
+          </td>
+          <td>
+              <pre concordion:set="#serialized">5:hello</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
+              String. Simple empty value.
+          </td>
+          <td>
+              <pre concordion:set="#serialized">0:</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
+              String. Long value.
+          </td>
+          <td>
+              <pre concordion:set="#serialized">11:hello world</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
+              List. 2 value items (4, a)
+          </td>
+          <td>
+              <pre concordion:set="#serialized">li4e1:ae</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
+              List. 5 nested lists: ((((()))))
+          </td>
+          <td>
+              <pre concordion:set="#serialized">llllleeeee</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
+              List. List of dictionaries ({a:1}{a:2}{a:3})
+          </td>
+          <td>
+              <pre concordion:set="#serialized">ld1:ai1eed1:ai2eed1:ai3eee</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
               Complex. Many values
           </td>
           <td>
-              <pre concordion:set="#serialized">5:abcde3:123i12345eli987eli654eei-321eei999999999ed3:onei11e3:twoi22ee4:bye!</pre>
+              <pre concordion:set="#serialized">d1:ai5e1:bli1e2:bai3ee1:dd5:hello5:worldee</pre>
           </td>
           <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
           </td>

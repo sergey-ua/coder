@@ -60,8 +60,14 @@ public class StringElementBuilder extends ValueElementBuilder<StringBeeElement>
       lastChar = token;
       return true;
     }
+    if (headerBuilder.isEmptyString(token))
+    {
+      return true;
+    }
     return false;
   }
+
+
 
   @Override
   public TypeMeta getSupportedTypeMeta()

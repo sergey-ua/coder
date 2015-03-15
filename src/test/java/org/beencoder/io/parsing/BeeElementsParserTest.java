@@ -4,6 +4,7 @@ import org.beencoder.excpetion.ParsingException;
 import org.beencoder.type.element.IntegerBeeElement;
 import org.beencoder.type.element.ListBeeElement;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -51,6 +52,16 @@ public class BeeElementsParserTest
     shouldFeedCharsOk(p, stringValue);
     Assert.assertNotNull(p.getParsedObject());
     Assert.assertEquals("123",p.getParsedObject().getValue());
+  }
+
+  @Test
+  public void parseEmptyString()
+  {
+    char[] stringValue = new char[] {'0',':'};
+    BeeElementsParser p = new BeeElementsParser();
+    shouldFeedCharsOk(p, stringValue);
+    Assert.assertNotNull(p.getParsedObject());
+    Assert.assertEquals("",p.getParsedObject().getValue());
   }
 
   @Test(expected = ParsingException.class)
@@ -118,6 +129,17 @@ public class BeeElementsParserTest
     shouldFeedCharsOk(p, dict);
     Assert.assertNotNull(p.getParsedObject());
   }
+
+  @Test
+  @Ignore
+  public void parseComplexThing()
+  {
+    char[] dict = "d1:ai5e1:bli1e2:bai3eed5:hello5:worldee".toCharArray();
+    BeeElementsParser p = new BeeElementsParser();
+    shouldFeedCharsOk(p, dict);
+    Assert.assertNotNull(p.getParsedObject());
+  }
+
   private void shouldFeedCharsOk(BeeElementsParser parser, char[] tokens)
   {
     try

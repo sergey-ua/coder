@@ -47,4 +47,13 @@ class StringElementHeaderBuilder
   {
     return length;
   }
+
+  public boolean isEmptyString(char token)
+  {
+    if (canHaveSeparator() && HEADER_SEPARATOR.equals(token))
+    {
+      return Integer.parseInt(lengthRawValue.toString()) == 0;
+    }
+    return false;
+  }
 }

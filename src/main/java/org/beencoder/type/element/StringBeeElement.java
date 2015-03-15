@@ -1,5 +1,7 @@
 package org.beencoder.type.element;
 
+import org.beencoder.type.TypeMeta;
+
 /**
  * Created by tityenok on 3/14/15.
  */
@@ -17,6 +19,12 @@ public class StringBeeElement implements BeeElement<String>
   public String getValue()
   {
     return value;
+  }
+
+  @Override
+  public TypeMeta getType()
+  {
+    return TypeMeta.STRING;
   }
 
   public static StringBeeElement fromString(String value)

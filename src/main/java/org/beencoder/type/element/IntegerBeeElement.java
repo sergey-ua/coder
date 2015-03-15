@@ -1,5 +1,7 @@
 package org.beencoder.type.element;
 
+import org.beencoder.type.TypeMeta;
+
 /**
  * Created by tityenok on 3/14/15.
  */
@@ -16,6 +18,12 @@ public class IntegerBeeElement implements BeeElement<Integer>
   public Integer getValue()
   {
     return value;
+  }
+
+  @Override
+  public TypeMeta getType()
+  {
+    return TypeMeta.INTEGER;
   }
 
   public static IntegerBeeElement fromInt(int value)

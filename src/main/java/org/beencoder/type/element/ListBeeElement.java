@@ -1,23 +1,31 @@
 package org.beencoder.type.element;
 
+import org.beencoder.type.TypeMeta;
+
 import java.util.List;
 
 /**
  * Created by tityenok on 3/14/15.
  */
-public class ListBeeElement implements BeeElement<List<? super BeeElement>>
+public class ListBeeElement implements BeeElement<List<? extends BeeElement>>
 {
-  private List<? super BeeElement> beeElements;
+  private List<? extends BeeElement> beeElements;
 
-  public ListBeeElement(List<? super BeeElement> beeElements)
+  public ListBeeElement(List<? extends BeeElement> beeElements)
   {
     this.beeElements = beeElements;
   }
 
   @Override
-  public List<? super BeeElement> getValue()
+  public List<? extends BeeElement> getValue()
   {
     return beeElements;
+  }
+
+  @Override
+  public TypeMeta getType()
+  {
+    return TypeMeta.LIST;
   }
 
   @Override

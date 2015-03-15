@@ -1,5 +1,7 @@
 package org.beencoder.type.element;
 
+import org.beencoder.type.TypeMeta;
+
 import java.util.Map;
 
 /**
@@ -17,6 +19,12 @@ public class MapBeeElement implements BeeElement<Map<StringBeeElement, ? super B
   public Map<StringBeeElement, ? super BeeElement> getValue()
   {
     return map;
+  }
+
+  @Override
+  public TypeMeta getType()
+  {
+    return TypeMeta.DICTIONARY;
   }
 
   @Override

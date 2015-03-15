@@ -54,6 +54,14 @@ public class ElementDecoratorFactory
       {
         return new StringElementDecorator();
       }
+      case LIST:
+      {
+        return new ListElementDecorator(this);
+      }
+      case DICTIONARY:
+      {
+        return new MapElementDecorator(this);
+      }
     }
     return null;
   }

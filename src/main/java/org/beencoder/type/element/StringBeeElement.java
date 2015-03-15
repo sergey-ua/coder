@@ -5,7 +5,7 @@ import org.beencoder.type.TypeMeta;
 /**
  * Created by tityenok on 3/14/15.
  */
-public class StringBeeElement implements BeeElement<String>
+public class StringBeeElement implements BeeElement<String>, Comparable<StringBeeElement>
 {
 
   private String value;
@@ -58,5 +58,27 @@ public class StringBeeElement implements BeeElement<String>
   public int hashCode()
   {
     return value != null ? value.hashCode() : 0;
+  }
+
+  @Override
+  public int compareTo(StringBeeElement o)
+  {
+    if (o == null)
+    {
+      return 1;
+    }
+    if (this == o)
+    {
+      return 0;
+    }
+    if (o.getValue() == null)
+    {
+      return value == null ? 0 : 1;
+    }
+    if (this.value == null)
+    {
+      return o.getValue() == null ? 0 : -1;
+    }
+    return this.value.compareTo(o.getValue());
   }
 }

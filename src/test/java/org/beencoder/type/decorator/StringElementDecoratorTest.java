@@ -18,7 +18,7 @@ public class StringElementDecoratorTest
   }
 
   @Test
-  public void testOnEptyString()
+  public void testOnEmptyString()
   {
     StringElementDecorator stringElementDecorator = new StringElementDecorator();
     StringBeeElement stringBeeElement = StringBeeElement.fromString("");

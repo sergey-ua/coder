@@ -7,16 +7,16 @@ import java.util.Map;
 /**
  * Created by tityenok on 3/14/15.
  */
-public class MapBeeElement implements BeeElement<Map<StringBeeElement, ? super BeeElement>>
+public class MapBeeElement implements BeeElement<Map<StringBeeElement, ? extends BeeElement>>
 {
-  private Map<StringBeeElement, ? super BeeElement> map;
+  private Map<StringBeeElement, ? extends BeeElement> map;
 
-  public MapBeeElement(Map<StringBeeElement, ? super BeeElement> map)
+  public MapBeeElement(Map<StringBeeElement, ? extends BeeElement> map)
   {
     this.map = map;
   }
   @Override
-  public Map<StringBeeElement, ? super BeeElement> getValue()
+  public Map<StringBeeElement, ? extends BeeElement> getValue()
   {
     return map;
   }

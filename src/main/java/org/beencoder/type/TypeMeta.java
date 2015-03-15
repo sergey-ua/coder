@@ -1,6 +1,5 @@
 package org.beencoder.type;
 
-import com.sun.istack.internal.Nullable;
 
 /**
  * Created by tityenok on 3/13/15.
@@ -34,7 +33,6 @@ public enum TypeMeta
     return endPattern;
   }
 
-  @Nullable
   public static TypeMeta defineByFirstChar(char ch)
   {
     if (Character.isDigit(ch))

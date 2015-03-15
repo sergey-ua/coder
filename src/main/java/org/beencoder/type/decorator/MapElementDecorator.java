@@ -4,7 +4,6 @@ import org.beencoder.type.TypeMeta;
 import org.beencoder.type.element.BeeElement;
 import org.beencoder.type.element.MapBeeElement;
 import org.beencoder.type.element.StringBeeElement;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import java.util.*;
 
@@ -46,7 +45,7 @@ public class MapElementDecorator extends BaseElementDecorator<MapBeeElement>
           .getOrCreateDecoratorForElement(element.getType());
       if (elementDecorator == null)
       {
-        throw new InvalidStateException("Cannot find decorator for type " + element.getType());
+        throw new IllegalStateException("Cannot find decorator for type " + element.getType());
       }
       formattedResult.append(elementDecorator.toPlainString(element));
     }

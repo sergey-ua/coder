@@ -27,6 +27,9 @@
         <module name="BeeNcoder" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="BeeNcoder" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

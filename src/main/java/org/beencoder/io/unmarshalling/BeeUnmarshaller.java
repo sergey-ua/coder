@@ -1,4 +1,4 @@
-package org.beencoder.io.unmarshalilng;
+package org.beencoder.io.unmarshalling;
 
 import org.beencoder.excpetion.ParsingException;
 import org.beencoder.io.parsing.BeeElementsParser;

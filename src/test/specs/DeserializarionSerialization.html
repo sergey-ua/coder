@@ -1,0 +1,33 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<body>
+<h1>Acceptance testing for BeeNcoder</h1>
+
+  <table>
+      <tr>
+          <th>Case name</th>
+          <th>Serialized value</th>
+          <th>Matched after unmarshalling and marshalling?</th>
+      </tr>
+      <tr>
+          <td>
+              Integer. Simple value.
+          </td>
+          <td>
+              <pre concordion:set="#serialized">i15e</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+      <tr>
+          <td>
+              Complex. Many values
+          </td>
+          <td>
+              <pre concordion:set="#serialized">5:abcde3:123i12345eli987eli654eei-321eei999999999ed3:onei11e3:twoi22ee4:bye!</pre>
+          </td>
+          <td concordion:assertTrue="ifAfterSerializationMatch(#serialized)">
+          </td>
+      </tr>
+  </table>
+</body>
+</html>

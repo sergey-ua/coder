@@ -1,6 +1,5 @@
 package org.beencoder.io.parsing;
 
-import com.sun.istack.internal.NotNull;
 import org.beencoder.excpetion.InvalidStatementException;
 import org.beencoder.excpetion.InvalidValueException;
 import org.beencoder.excpetion.ParsingException;
@@ -61,7 +60,7 @@ public class BeeElementsParser
     return currentBuilder;
   }
 
-  private boolean canAddItemsToContainer(@NotNull ElementBuilder builder, char token)
+  private boolean canAddItemsToContainer( ElementBuilder builder, char token)
   {
     return builder.canContainElements() && ! builder.canBeCompletedWith(token);
   }

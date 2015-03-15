@@ -3,7 +3,6 @@ package org.beencoder.type.decorator;
 import org.beencoder.type.TypeMeta;
 import org.beencoder.type.element.BeeElement;
 import org.beencoder.type.element.ListBeeElement;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class ListElementDecorator extends BaseElementDecorator<ListBeeElement>
         ElementDecorator decorator = decoratorFactory.getOrCreateDecoratorForElement(value.getType());
         if (decorator == null)
         {
-          throw new InvalidStateException("Cannot find decorator for type " + value.getType());
+          throw new IllegalStateException("Cannot find decorator for type " + value.getType());
         }
         formattedValue.append(decorator.toPlainString(value));
       }

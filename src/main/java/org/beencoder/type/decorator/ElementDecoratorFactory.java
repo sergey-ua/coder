@@ -1,6 +1,5 @@
 package org.beencoder.type.decorator;
 
-import com.sun.istack.internal.NotNull;
 import org.beencoder.type.TypeMeta;
 import org.beencoder.type.element.BeeElement;
 
@@ -16,7 +15,7 @@ public class ElementDecoratorFactory
   private Map<TypeMeta, ElementDecorator> decoratorsRepository =
       new HashMap<>();
 
-  public ElementDecorator getOrCreateDecoratorForElement(@NotNull TypeMeta typeMeta)
+  public ElementDecorator getOrCreateDecoratorForElement( TypeMeta typeMeta)
   {
     assert typeMeta != null : "Null parameter is not supported";
     return lazyCreate(typeMeta);

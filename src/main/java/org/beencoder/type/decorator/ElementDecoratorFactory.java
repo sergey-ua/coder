@@ -1,7 +1,6 @@
 package org.beencoder.type.decorator;
 
 import org.beencoder.type.TypeMeta;
-import org.beencoder.type.element.BeeElement;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 public class ElementDecoratorFactory
 {
 
-  private Map<TypeMeta, ElementDecorator> decoratorsRepository =
+  private final Map<TypeMeta, ElementDecorator> decoratorsRepository =
       new HashMap<>();
 
   public ElementDecorator getOrCreateDecoratorForElement( TypeMeta typeMeta)

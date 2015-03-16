@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ListElementBuilder extends ContainerElementBuilder<ListBeeElement>
 {
-  private List<BeeElement> elements = new LinkedList<>();
+  private final List<BeeElement> elements = new LinkedList<>();
 
   @Override
   public void appendElement(BeeElement element)

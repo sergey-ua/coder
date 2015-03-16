@@ -13,7 +13,7 @@ import java.util.*;
 public class MapElementDecorator extends BaseElementDecorator<MapBeeElement>
 {
 
-  private ElementDecoratorFactory elementDecoratorFactory;
+  private final ElementDecoratorFactory elementDecoratorFactory;
 
   public MapElementDecorator(ElementDecoratorFactory elementDecoratorFactory)
   {
@@ -37,6 +37,18 @@ public class MapElementDecorator extends BaseElementDecorator<MapBeeElement>
 
   }
 
+  private StringBeeElement[] sortKeys(Set<StringBeeElement> stringBeeElements)
+  {
+    StringBeeElement[] stringArray = stringBeeElements.toArray(new StringBeeElement[stringBeeElements.size()]);
+    Arrays.sort(stringArray);
+    return stringArray;
+  }
+
+  private void formatKey(StringBuilder formattedResult, StringBeeElement key)
+  {
+    formattedResult.append(elementDecoratorFactory.getOrCreateDecoratorForElement(key.getType()).toPlainString(key));
+  }
+
   private void formatValue(StringBuilder formattedResult, BeeElement element)
   {
     if (element != null)
@@ -52,15 +64,4 @@ public class MapElementDecorator extends BaseElementDecorator<MapBeeElement>
 
   }
 
-  private void formatKey(StringBuilder formattedResult, StringBeeElement key)
-  {
-    formattedResult.append(elementDecoratorFactory.getOrCreateDecoratorForElement(key.getType()).toPlainString(key));
-  }
-
-  private StringBeeElement[] sortKeys(Set<StringBeeElement> stringBeeElements)
-  {
-    StringBeeElement[] stringArray = stringBeeElements.toArray(new StringBeeElement[stringBeeElements.size()]);
-    Arrays.sort(stringArray);
-    return stringArray;
-  }
 }

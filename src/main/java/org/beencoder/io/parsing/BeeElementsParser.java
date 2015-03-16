@@ -15,8 +15,8 @@ import org.beencoder.type.element.BeeElement;
  */
 public class BeeElementsParser
 {
-  private UnderConstructionBuildersHolder underConstructBuilders = new UnderConstructionBuildersHolder();
-  private ElementBuilderFactory builderFactory = new ElementBuilderFactory();
+  private final UnderConstructionBuildersHolder underConstructBuilders = new UnderConstructionBuildersHolder();
+  private final ElementBuilderFactory builderFactory = new ElementBuilderFactory();
 
   private BeeElement parsedObject;
 

@@ -9,7 +9,7 @@ import org.beencoder.type.element.BeeElement;
  */
 public class BeeMarshaller
 {
-  private ElementDecoratorFactory decoratorFactory = new ElementDecoratorFactory();
+  private final ElementDecoratorFactory decoratorFactory = new ElementDecoratorFactory();
 
   public byte[] marshall(BeeElement element)
   {

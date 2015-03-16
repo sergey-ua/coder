@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class MapElementBuilder extends ContainerElementBuilder<MapBeeElement>
 {
-  private Map<StringBeeElement,  BeeElement> map = new HashMap<>();
+  private final Map<StringBeeElement,  BeeElement> map = new HashMap<>();
   private StringBeeElement currentKey;
 
 

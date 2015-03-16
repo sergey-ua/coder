@@ -8,8 +8,8 @@ import org.beencoder.type.element.StringBeeElement;
  */
 public class StringElementBuilder extends ValueElementBuilder<StringBeeElement>
 {
-  private StringElementHeaderBuilder headerBuilder = new StringElementHeaderBuilder();
-  private StringBuilder value = new StringBuilder("");
+  private final StringElementHeaderBuilder headerBuilder = new StringElementHeaderBuilder();
+  private final StringBuilder value = new StringBuilder("");
   private Character lastChar;
 
   public StringElementBuilder(Character character)
@@ -60,11 +60,7 @@ public class StringElementBuilder extends ValueElementBuilder<StringBeeElement>
       lastChar = token;
       return true;
     }
-    if (headerBuilder.isEmptyString(token))
-    {
-      return true;
-    }
-    return false;
+    return headerBuilder.isEmptyString(token);
   }
 
 

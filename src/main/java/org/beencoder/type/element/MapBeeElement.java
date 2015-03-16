@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class MapBeeElement implements BeeElement<Map<StringBeeElement, ? extends BeeElement>>
 {
-  private Map<StringBeeElement, ? extends BeeElement> map;
+  private final Map<StringBeeElement, ? extends BeeElement> map;
 
   public MapBeeElement(Map<StringBeeElement, ? extends BeeElement> map)
   {

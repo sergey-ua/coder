@@ -7,7 +7,7 @@ class StringElementHeaderBuilder
 {
   public static final Character HEADER_SEPARATOR = ':';
 
-  private StringBuilder lengthRawValue = new StringBuilder("");
+  private final StringBuilder lengthRawValue = new StringBuilder("");
   private Integer length;
 
   public void append(char headerChar)

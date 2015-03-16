@@ -15,7 +15,7 @@ import org.beencoder.type.element.BeeElement;
  */
 public class BeeUnmarshaller
 {
-  private BeeElementsParser parser = new BeeElementsParser();
+  private final BeeElementsParser parser = new BeeElementsParser();
 
   public BeeElement unmarshall(byte[] serializedElement) throws ParsingException
   {

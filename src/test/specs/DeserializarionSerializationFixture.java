@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 @RunWith(ConcordionRunner.class)
 public class DeserializarionSerializationFixture
 {
+
   public boolean ifAfterSerializationMatch(String serialized) throws ParsingException
   {
     BeeUnmarshaller unmarshaller = new BeeUnmarshaller();

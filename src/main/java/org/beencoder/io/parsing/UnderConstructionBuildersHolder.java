@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 class UnderConstructionBuildersHolder
 {
-  private Deque<ElementBuilder> nestingBuilders = new LinkedList<ElementBuilder>();
+  private final Deque<ElementBuilder> nestingBuilders = new LinkedList<>();
 
   void push( ElementBuilder b) throws InvalidStatementException
   {

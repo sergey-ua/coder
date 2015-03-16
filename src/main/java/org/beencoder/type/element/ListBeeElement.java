@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ListBeeElement implements BeeElement<List<? extends BeeElement>>
 {
-  private List<? extends BeeElement> beeElements;
+  private final List<? extends BeeElement> beeElements;
 
   public ListBeeElement(List<? extends BeeElement> beeElements)
   {

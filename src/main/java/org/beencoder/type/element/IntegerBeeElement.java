@@ -7,7 +7,7 @@ import org.beencoder.type.TypeMeta;
  */
 public class IntegerBeeElement implements BeeElement<Integer>
 {
-  private Integer value;
+  private final Integer value;
 
   public IntegerBeeElement(int value)
   {
@@ -45,12 +45,8 @@ public class IntegerBeeElement implements BeeElement<Integer>
 
     IntegerBeeElement that = (IntegerBeeElement) o;
 
-    if (value != null ? !value.equals(that.value) : that.value != null)
-    {
-      return false;
-    }
+    return !(value != null ? !value.equals(that.value) : that.value != null);
 
-    return true;
   }
 
   @Override

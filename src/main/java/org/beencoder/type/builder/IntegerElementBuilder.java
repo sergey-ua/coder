@@ -31,14 +31,8 @@ public class IntegerElementBuilder extends ValueElementBuilder<IntegerBeeElement
   @Override
   public IntegerBeeElement build()
   {
-    try
-    {
-      return IntegerBeeElement.fromInt(Integer.parseInt(value));
-    }
-    catch (NullPointerException ex)
-    {
-      return null;
-    }
+    return IntegerBeeElement.fromInt(Integer.parseInt(value));
+
   }
 
   @Override

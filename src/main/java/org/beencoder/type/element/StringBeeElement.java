@@ -8,7 +8,7 @@ import org.beencoder.type.TypeMeta;
 public class StringBeeElement implements BeeElement<String>, Comparable<StringBeeElement>
 {
 
-  private String value;
+  private final String value;
 
   public StringBeeElement(String value)
   {

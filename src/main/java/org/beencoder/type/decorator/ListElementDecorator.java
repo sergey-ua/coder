@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ListElementDecorator extends BaseElementDecorator<ListBeeElement>
 {
-  private ElementDecoratorFactory decoratorFactory;
+  private final ElementDecoratorFactory decoratorFactory;
 
   public ListElementDecorator(ElementDecoratorFactory decoratorFactory)
   {

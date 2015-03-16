@@ -1,7 +1,6 @@
 package org.beencoder.type.decorator;
 
 import org.beencoder.type.element.BeeElement;
-import org.beencoder.type.element.IntegerBeeElement;
 
 /**
  * Created by tityenok on 3/15/15.
@@ -9,7 +8,7 @@ import org.beencoder.type.element.IntegerBeeElement;
 public abstract class BaseElementDecorator<T extends BeeElement> implements ElementDecorator<T>
 {
 
-  public static final String DEFAULT_NULL_VALUE = "";
+  private static final String DEFAULT_NULL_VALUE = "";
 
   @Override
   public String toPlainString(T element)

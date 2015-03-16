@@ -4,6 +4,8 @@ B-Encode description was taken from:
 
 https://en.wikipedia.org/wiki/Bencode
 
+Requires JDK 1.7 +
+
 Build
 
 mvn clean install

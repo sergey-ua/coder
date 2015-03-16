@@ -8,6 +8,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
+ * Contains elements which are still in progress of building. Helps to restore nesting of types.
  * Created by tityenok on 3/14/15.
  */
 class UnderConstructionBuildersHolder

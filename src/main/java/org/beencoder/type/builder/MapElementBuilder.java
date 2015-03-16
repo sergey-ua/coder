@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Builder for DICTIONARY type.
+ * First {@code appendElement} expects to get key, second call of this method expects to get value for dictionary.
+ *
  * Created by tityenok on 3/14/15.
  */
 public class MapElementBuilder extends ContainerElementBuilder<MapBeeElement>

@@ -11,7 +11,28 @@ import org.beencoder.type.builder.ValueElementBuilder;
 import org.beencoder.type.element.BeeElement;
 
 /**
- * Created by tityenok on 3/14/15.
+ * Parses sequence of chars one by one. Use {@code feedToken(char)} in pair with {@code isObjectReady}.
+ * Once object is ready call {@code getParsedObject}
+ * Example
+ * <p>
+ *    <pre>
+ *      {@code
+ *   while (..bytes reading)
+ *      {
+ *        for (byte b in bytes)
+ *        {
+ *           beeElementsParser.feedToken((char) b);
+ *           if (beeElementsParser.isObjectReady())
+ *           {
+ *             readObjects.add(beeElementsParser.getParsedObject())
+ *           }
+ *        }
+ *      }
+ *      }
+ *    </pre>
+ * </p>
+ *
+ * @author tityenok
  */
 public class BeeElementsParser
 {
